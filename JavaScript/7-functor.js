@@ -7,4 +7,4 @@ global.api = {
 const benchmark = require('./6-benchmark');
 const chainFunctor = require('./2-functor');
 const test = require('./4-test');
-benchmark.do(10000, 'Functor', () => test(chainFunctor));
+benchmark.do(20000, 'Functor', (done) => test(chainFunctor, done));
