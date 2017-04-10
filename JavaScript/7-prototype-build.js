@@ -5,6 +5,6 @@ global.api = {
 };
 
 const benchmark = require('./6-benchmark');
-const chainPromise = require('./1-promise');
+const chainPrototype = require('./3-prototype');
 const test = require('./4-test');
-benchmark.do(40000, 'Promise', (done) => test(chainPromise, done));
+benchmark.do(40000, 'ProtoBuild', (done) => test(chainPrototype, done));

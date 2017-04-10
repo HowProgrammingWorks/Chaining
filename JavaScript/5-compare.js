@@ -5,7 +5,7 @@ global.api = {
 };
 
 const implementations = (
-  ['1-promise', '2-functor', '3-prototype']
+  ['1-promise', '2-functor', '3-prototype', '3-prototype-build']
   .map(name => './' + name + '.js')
   .map(require)
 );
