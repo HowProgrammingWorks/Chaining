@@ -8,8 +8,12 @@ const PRE_COUNT = 1000;
 const rpad = (s, char, count) => (s + char.repeat(count - s.length));
 const lpad = (s, char, count) => (char.repeat(count - s.length) + s);
 
-
 benchmark.do = (num, name, fn) => {
+  let i;
+  let count = 0;
+  const result = [];
+  const begin = process.hrtime();
+
   const done = () => {
     const end = process.hrtime(begin);
     const diff = end[0] * 1e9 + end[1];
@@ -17,11 +21,8 @@ benchmark.do = (num, name, fn) => {
     name = rpad(name, '.', 12);
     console.log(name + time + ' nanoseconds');
   };
-  let count = 0;
+
   const next = () => (++count === num && done ? done() : 0);
-  const result = [];
-  let i;
   for (i = 0; i < PRE_COUNT; i++) result.push(fn(() => {}));
-  const begin = process.hrtime();
   for (i = 0; i < num; i++) result.push(fn(next));
 };
