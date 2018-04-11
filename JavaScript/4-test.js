@@ -7,6 +7,17 @@ module.exports = (chaining, done) => {
 
   chaining
     .for([1, 2, 3, 4])
+    .filter(item => item % 2 === 0)
+    .map(item => item * 2)
+    .reduce((a, b) => a + b)
+    .fetch((err, result) => {
+      if (err) throw err;
+      if (!done) console.dir(result);
+      next();
+    });
+
+  chaining
+    .for([1, 2, 3, 4])
     .filter((item, cb) => cb(null, item % 2 === 0))
     .map((item, cb) => cb(null, item * 2))
     .reduce((a, b, cb) => cb(null, a + b))
