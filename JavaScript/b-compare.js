@@ -5,12 +5,12 @@ global.api = {
 };
 
 const implementations = (
-  ['1-promise', '2-functor', '3-prototype', '3-prototype-build']
+  ['6-promise', '7-functor', '8-prototype', '9-build']
     .map(name => './' + name + '.js')
     .map(require)
 );
 
-const test = require('./4-test.js');
+const test = require('./a-test.js');
 
 implementations.map((chaining, i) => {
   console.log('Implementation: #' + i);
