@@ -16,13 +16,13 @@ class ArrayChain {
 
   fetch(fn) {
     return (this
-      .then((data) => fn(null, data))
-      .catch((err) => fn(err))
+      .then(data => fn(null, data))
+      .catch(err => fn(err))
     );
   }
 
   _chain(performer, fn, initial) {
-    this._promise = this._promise.then((array) => (
+    this._promise = this._promise.then(array => (
       new Promise((resolve, reject) => (
         performer(array, fn, (err, result) => (
           (err ? reject(err) : resolve(result))
