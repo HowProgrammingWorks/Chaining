@@ -4,10 +4,12 @@ class Text {
   constructor(s) {
     this.value = s;
   }
+
   line(a) {
     this.value += '\n' + a;
     return this;
   }
+
   toString() {
     return this.value;
   }

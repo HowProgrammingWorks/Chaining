@@ -1,7 +1,6 @@
 'use strict';
 
 class ArrayChain {
-
   constructor(array) {
     this._promise = Promise.resolve(array);
   }
@@ -60,7 +59,6 @@ class ArrayChain {
     this._chain(api.metasync.find, fn);
     return this;
   }
-
 }
 
 module.exports = {
