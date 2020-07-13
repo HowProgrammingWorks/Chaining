@@ -1,13 +1,15 @@
 'use strict';
 
+const metasync = require('metasync');
+
 const async = op => {
   switch (op) {
-    case 'map': return api.metasync.map;
-    case 'filter': return api.metasync.filter;
-    case 'reduce': return api.metasync.reduce;
-    case 'each': return api.metasync.each;
-    case 'series': return api.metasync.series;
-    case 'find': return api.metasync.find;
+    case 'map': return metasync.map;
+    case 'filter': return metasync.filter;
+    case 'reduce': return metasync.reduce;
+    case 'each': return metasync.each;
+    case 'series': return metasync.series;
+    case 'find': return metasync.find;
   }
 };
 

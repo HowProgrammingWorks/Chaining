@@ -1,7 +1,8 @@
 'use strict';
 
-const arrayChain = (array, prev = null) => {
+const metasync = require('metasync');
 
+const arrayChain = (array, prev = null) => {
   let next = null, done = null, fail = null;
 
   const self = (err, data) => {
@@ -29,15 +30,14 @@ const arrayChain = (array, prev = null) => {
     return res;
   };
 
-  self.map = chain(api.metasync.map);
-  self.filter = chain(api.metasync.filter);
-  self.reduce = chain(api.metasync.reduce);
-  self.each = chain(api.metasync.each);
-  self.series = chain(api.metasync.series);
-  self.find = chain(api.metasync.find);
+  self.map = chain(metasync.map);
+  self.filter = chain(metasync.filter);
+  self.reduce = chain(metasync.reduce);
+  self.each = chain(metasync.each);
+  self.series = chain(metasync.series);
+  self.find = chain(metasync.find);
 
   return self;
-
 };
 
 module.exports = {
