@@ -2,7 +2,7 @@
 
 const implementations = [
   '6-promise', '7-functor', '8-prototype', '9-build'
-].map(name => `./${name}.js`).map(require);
+].map((name) => `./${name}.js`).map(require);
 
 const test = require('./a-test.js');
 

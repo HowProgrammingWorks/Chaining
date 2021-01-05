@@ -1,7 +1,7 @@
 'use strict';
 
 const text = (s = '') => ({
-  line: a => text(`${s}\n${a}`),
+  line: (a) => text(`${s}\n${a}`),
   toString: () => s
 });
 

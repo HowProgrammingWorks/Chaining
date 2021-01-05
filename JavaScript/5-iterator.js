@@ -1,7 +1,7 @@
 'use strict';
 
 const text = (s = '', o = {
-  line: a => (s +=  '\n' + a, o),
+  line: (a) => (s +=  '\n' + a, o),
   [Symbol.iterator]: () => ({
     next() {
       const res = { value: s, done: this.finished };

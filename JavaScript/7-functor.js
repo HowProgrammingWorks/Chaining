@@ -17,14 +17,14 @@ const arrayChain = (array, prev = null) => {
 
   if (!prev) process.nextTick(() => self(null, array));
 
-  self.then = fn => (done = fn, self);
-  self.catch = fn => (fail = fn, self);
-  self.fetch = fn => (self
-    .then(data => fn(null, data))
-    .catch(err => fn(err))
+  self.then = (fn) => (done = fn, self);
+  self.catch = (fn) => (fail = fn, self);
+  self.fetch = (fn) => (self
+    .then((data) => fn(null, data))
+    .catch((err) => fn(err))
   );
 
-  const chain = performer => (fn, initial) => {
+  const chain = (performer) => (fn, initial) => {
     const res = arrayChain(null, self);
     next = () => performer(array, fn, res, initial);
     return res;
