@@ -5,6 +5,6 @@
   "description": "How Programming Works: Chaining",
   "license": "MIT",
   "dependencies": {
-    "metasync": "0.3.x"
+    "metasync": "^0.3.32"
   }
 }
