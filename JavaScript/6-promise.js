@@ -1,5 +1,7 @@
 'use strict';
 
+const metasync = require('metasync');
+
 class ArrayChain {
   constructor(array) {
     this._promise = Promise.resolve(array);
@@ -31,32 +33,32 @@ class ArrayChain {
   }
 
   map(fn) {
-    this._chain(api.metasync.map, fn);
+    this._chain(metasync.map, fn);
     return this;
   }
 
   filter(fn) {
-    this._chain(api.metasync.filter, fn);
+    this._chain(metasync.filter, fn);
     return this;
   }
 
   reduce(fn, initial) {
-    this._chain(api.metasync.reduce, fn, initial);
+    this._chain(metasync.reduce, fn, initial);
     return this;
   }
 
   each(fn) {
-    this._chain(api.metasync.each, fn);
+    this._chain(metasync.each, fn);
     return this;
   }
 
   series(fn) {
-    this._chain(api.metasync.series, fn);
+    this._chain(metasync.series, fn);
     return this;
   }
 
   find(fn) {
-    this._chain(api.metasync.find, fn);
+    this._chain(metasync.find, fn);
     return this;
   }
 }
