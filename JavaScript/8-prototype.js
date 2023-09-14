@@ -10,6 +10,7 @@ const async = (op) => {
   case 'each': return metasync.each;
   case 'series': return metasync.series;
   case 'find': return metasync.find;
+  default: return null;
   }
 };
 
@@ -24,20 +25,20 @@ ArrayChain.prototype.execute = function(err) {
     if (!item.op) throw err;
     if (item.op === 'catch') {
       item.fn(err);
-      return this.execute();
+      return void this.execute();
     } else {
-      return this.execute(err);
+      return void this.execute(err);
     }
   }
   if (!item.op) return;
   if (item.op === 'then') {
     item.fn(this.array);
-    return this.execute();
+    return void this.execute();
   }
   const op = async(item.op);
-  if (!op) return this.execute();
+  if (!op) return void this.execute();
   op(this.array, item.fn, (err, data) => {
-    if (err) return this.execute(err);
+    if (err) return void this.execute(err);
     this.array = data;
     this.execute();
   });
