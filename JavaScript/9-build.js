@@ -4,13 +4,20 @@ const metasync = require('metasync');
 
 const async = (op) => {
   switch (op) {
-  case 'map': return metasync.map;
-  case 'filter': return metasync.filter;
-  case 'reduce': return metasync.reduce;
-  case 'each': return metasync.each;
-  case 'series': return metasync.series;
-  case 'find': return metasync.find;
-  default: return null;
+    case 'map':
+      return metasync.map;
+    case 'filter':
+      return metasync.filter;
+    case 'reduce':
+      return metasync.reduce;
+    case 'each':
+      return metasync.each;
+    case 'series':
+      return metasync.series;
+    case 'find':
+      return metasync.find;
+    default:
+      return null;
   }
 };
 
@@ -19,7 +26,7 @@ function ArrayChain(array) {
   this.chain = [];
 }
 
-ArrayChain.prototype.execute = function(err) {
+ArrayChain.prototype.execute = function (err) {
   const item = this.chain.shift() || {};
   if (err) {
     if (!item.op) throw err;
@@ -44,15 +51,16 @@ ArrayChain.prototype.execute = function(err) {
   });
 };
 
-['then', 'catch', 'map', 'filter', 'reduce', 'each', 'series', 'find']
-  .map((op) => {
-    ArrayChain.prototype[op] = function(fn) {
+['then', 'catch', 'map', 'filter', 'reduce', 'each', 'series', 'find'].map(
+  (op) => {
+    ArrayChain.prototype[op] = function (fn) {
       this.chain.push({ op, fn });
       return this;
     };
-  });
+  },
+);
 
-ArrayChain.prototype.fetch = function(fn) {
+ArrayChain.prototype.fetch = function (fn) {
   this.chain.push({ op: 'then', fn: (res) => fn(null, res) });
   this.chain.push({ op: 'catch', fn });
   this.execute();
@@ -60,5 +68,5 @@ ArrayChain.prototype.fetch = function(fn) {
 };
 
 module.exports = {
-  for: (array) => new ArrayChain(array)
+  for: (array) => new ArrayChain(array),
 };

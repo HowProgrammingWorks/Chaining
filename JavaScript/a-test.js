@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = (chaining, done) => {
-
   let count = 0;
   const next = () => (++count === 3 && done ? done() : 0);
 
@@ -48,5 +47,4 @@ module.exports = (chaining, done) => {
       }
       next();
     });
-
 };

@@ -17,9 +17,6 @@ class Text {
 
 // Usage
 
-const txt = new Text('line1')
-  .line('line2')
-  .line('line3')
-  .line('line4');
+const txt = new Text('line1').line('line2').line('line3').line('line4');
 
 console.log(`${txt}`);

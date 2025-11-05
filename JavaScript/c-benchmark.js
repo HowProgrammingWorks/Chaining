@@ -5,8 +5,8 @@ module.exports = benchmark;
 
 const PRE_COUNT = 1000;
 
-const rpad = (s, char, count) => (s + char.repeat(count - s.length));
-const lpad = (s, char, count) => (char.repeat(count - s.length) + s);
+const rpad = (s, char, count) => s + char.repeat(count - s.length);
+const lpad = (s, char, count) => char.repeat(count - s.length) + s;
 
 benchmark.do = (num, name, fn) => {
   let i;

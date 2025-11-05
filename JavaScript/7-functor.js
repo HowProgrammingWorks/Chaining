@@ -3,7 +3,9 @@
 const metasync = require('metasync');
 
 const arrayChain = (array, prev = null) => {
-  let next = null, done = null, fail = null;
+  let next = null,
+    done = null,
+    fail = null;
 
   const self = (err, data) => {
     array = data;
@@ -17,12 +19,16 @@ const arrayChain = (array, prev = null) => {
 
   if (!prev) process.nextTick(() => self(null, array));
 
-  self.then = (fn) => (done = fn, self);
-  self.catch = (fn) => (fail = fn, self);
-  self.fetch = (fn) => (self
-    .then((data) => fn(null, data))
-    .catch((err) => fn(err))
-  );
+  self.then = (fn) => {
+    done = fn;
+    return self;
+  };
+  self.catch = (fn) => {
+    fail = fn;
+    return self;
+  };
+  self.fetch = (fn) =>
+    self.then((data) => fn(null, data)).catch((err) => fn(err));
 
   const chain = (performer) => (fn, initial) => {
     const res = arrayChain(null, self);
@@ -41,5 +47,5 @@ const arrayChain = (array, prev = null) => {
 };
 
 module.exports = {
-  for: arrayChain
+  for: arrayChain,
 };
