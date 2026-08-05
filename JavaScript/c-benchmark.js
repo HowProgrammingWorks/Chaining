@@ -19,7 +19,7 @@ benchmark.do = (num, name, fn) => {
     const diff = end[0] * 1e9 + end[1];
     const time = lpad(diff.toString(), '.', 12);
     name = rpad(name, '.', 12);
-    console.log(name + time + ' nanoseconds');
+    console.log(`${name}${time} nanoseconds`);
   };
 
   const next = () => (++count === num && done ? done() : 0);
