@@ -27,7 +27,7 @@ function ArrayChain(array) {
 }
 
 ArrayChain.prototype.execute = function (err) {
-  const item = this.chain.shift() || {};
+  const item = this.chain.shift() ?? {};
   if (err) {
     if (!item.op) throw err;
     if (item.op === 'catch') {

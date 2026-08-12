@@ -9,11 +9,11 @@ const arrayChain = (array, prev = null) => {
 
   const self = (err, data) => {
     array = data;
-    if (next) next();
+    next?.();
     if (err) {
-      if (fail) fail(err);
-    } else if (done) {
-      done(data);
+      fail?.(err);
+    } else {
+      done?.(data);
     }
   };
 
